@@ -14,10 +14,14 @@ oi.forEach(opa => {
 })
 
 function verificação() {
-    console.log(digitados.textContent)
-    switch (digitados.textContent) {
+    let escrito = digitados.textContent
+    switch (escrito) {
         case '55':
             tela.style.backgroundColor = "red"
+            fetch('/envio',{
+                method: "post",
+                body: JSON.stringify({escrito:escrito})
+            })
             break
 
         case '20':

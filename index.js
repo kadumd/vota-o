@@ -17,6 +17,24 @@ const servidor = http.createServer((pedido, resposta) => {
             resposta.writeHead(200, { "Content-Type": "text/javascript" })
             resposta.end(fs.readFileSync("./execucao.js"))
             break
+
+        case '/lista.json':
+            resposta.writeHead(200, { "Content-Type": "application/json" })
+            resposta.end(fs.readFileSync("./lista.json"))
+            break
+
+
+        case '/envio':
+            pedido.on('data', (body) => {
+                console.log(JSON.parse(body))
+                let dadosDoBanco = JSON.parse(fs.readFileSync('./lista.json'))
+                let novosDados = JSON.parse(body)
+
+                dadosDoBanco.push(novosDados)
+
+                fs.writeFileSync('lista.json', JSON.stringify(dadosDoBanco));
+            })
+            break
     }
 })
 
