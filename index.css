@@ -8,8 +8,28 @@ body{
     height: 100vh;
     width: 100vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+#placar{
+    height: 20%;
+    width: 50%;
+    display: flex;
+    border: solid black 1px;
+}
+
+#placar-vermelho{
+    height: 100%;
+    width: 50%;
+    border: solid black 1px;
+}
+
+#placar-amarelo{
+    height: 100%;
+    width: 50%;
+    border: solid black 1px;
 }
 
 main{

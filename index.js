@@ -24,13 +24,25 @@ const servidor = http.createServer((pedido, resposta) => {
             break
 
 
-        case '/envio':
+        case '/envio55':
             pedido.on('data', (body) => {
                 console.log(JSON.parse(body))
                 let dadosDoBanco = JSON.parse(fs.readFileSync('./lista.json'))
                 let novosDados = JSON.parse(body)
 
-                dadosDoBanco.push(novosDados)
+                dadosDoBanco["55"].push(novosDados)
+
+                fs.writeFileSync('lista.json', JSON.stringify(dadosDoBanco));
+            })
+            break
+
+        case '/envio40':
+            pedido.on('data', (body) => {
+                console.log(JSON.parse(body))
+                let dadosDoBanco = JSON.parse(fs.readFileSync('./lista.json'))
+                let novosDados = JSON.parse(body)
+
+                dadosDoBanco["40"].push(novosDados)
 
                 fs.writeFileSync('lista.json', JSON.stringify(dadosDoBanco));
             })

@@ -17,21 +17,42 @@ function verificação() {
     let escrito = digitados.textContent
     switch (escrito) {
         case '55':
-            tela.style.backgroundColor = "red"
-            fetch('/envio',{
+            tela.style.backgroundColor = "yellow"
+            fetch('/envio55', {
                 method: "post",
-                body: JSON.stringify({escrito:escrito})
+                body: JSON.stringify({ escrito: escrito })
             })
             break
 
-        case '20':
-            tela.style.backgroundColor = "yellow"
+        case '40':
+            tela.style.backgroundColor = "red"
+            fetch('/envio40', {
+                method: "post",
+                body: JSON.stringify({ escrito: escrito })
+            })
             break
     }
 }
-function apagar (){
+function apagar() {
     digitados.textContent = ""
 }
 
 confirmar.addEventListener("click", verificação)
 corrige.addEventListener("click", apagar)
+
+//pegando o servidor pra fazer a contagem HAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA
+
+
+const valorVermelho = document.querySelector(".valor-vermelho")
+const valorAmarelo = document.querySelector(".valor-amarelo")
+
+
+setInterval(async() => {
+    const servidorRuim = await fetch("./lista.json")
+    const servidorBom = await servidorRuim.json()
+    valorVermelho.textContent = ""
+    valorAmarelo.textContent = ""
+
+    valorVermelho.textContent += servidorBom["55"]["length"]
+    valorAmarelo.textContent += servidorBom["40"]["length"]
+}, 100);
